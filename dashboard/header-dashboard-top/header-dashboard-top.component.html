@@ -1,0 +1,7 @@
+<mat-toolbar class="page-header">
+    <mat-icon class="page-header__burger">menu</mat-icon>
+    <span class="page-header__title">Заказ 2.0</span>
+    <span class="page-header__spacer"></span>
+    <a class="user-avatar" (click)="toggleDialog()">{{shortName}}</a>
+    <app-user-info *ngIf="open" [user]="user" (closed)="open = false"></app-user-info>
+</mat-toolbar>

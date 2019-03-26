@@ -1,0 +1,79 @@
+<div class="recent-orders__wrap">
+    <div class="recent-orders">
+        <button mat-button class="new_order_btn" (click)="createOrder()">
+            <mat-icon class="ic-add ic-small ic_order">add</mat-icon>
+            <span>Новый заказ</span>
+        </button>
+        <h1 class="recent-orders__title">Недавние заказы</h1>
+        <form novalidate class="order_search">
+            <mat-icon class="ic_order_search">search</mat-icon>
+            <mat-form-field class="form__input form__input--order_search">
+                <input matInput placeholder="Номер заказа">
+            </mat-form-field>
+        </form>
+        <div class="orders_list">
+            <table mat-table [dataSource]="dataSource" class="orders_list__table">
+
+                <ng-container matColumnDef="number">
+                    <th mat-header-cell *matHeaderCellDef class="services-product__quantity">Номер</th>
+                    <td mat-cell *matCellDef="let element" class="services-product__quantity">{{element.number}}</td>
+                </ng-container>
+
+                <ng-container matColumnDef="date">
+                    <th mat-header-cell *matHeaderCellDef class="services-product__floor">Дата</th>
+                    <td mat-cell *matCellDef="let element" class="services-product__floor">{{element.date}}</td>
+                </ng-container>
+
+                <ng-container matColumnDef="customerName">
+                    <th mat-header-cell *matHeaderCellDef class="services-product__floor">Контрагент</th>
+                    <td mat-cell *matCellDef="let element" class="services-product__floor">{{element.customerName}}</td>
+                </ng-container>
+
+                <ng-container matColumnDef="totalSum">
+                    <th mat-header-cell *matHeaderCellDef class="services-product__price">Итог, ₽</th>
+                    <td mat-cell *matCellDef="let element" class="services-product__price">{{element.totalSum}}</td>
+                </ng-container>
+
+                <ng-container matColumnDef="shippingDate">
+                    <th mat-header-cell *matHeaderCellDef class="services-product__floor">Дата отгрузки</th>
+                    <td mat-cell *matCellDef="let element" class="services-product__floor">{{element.shippingDate}}</td>
+                </ng-container>
+
+                <ng-container matColumnDef="deliveryAddress">
+                    <th mat-header-cell *matHeaderCellDef class="services-product__quantity">Получение</th>
+                    <td mat-cell *matCellDef="let element" class="services-product__quantity">{{element.deliveryAddress}}</td>
+                </ng-container>
+
+                <ng-container matColumnDef="paid">
+                    <th mat-header-cell *matHeaderCellDef class="services-product__floor">Оплата</th>
+                    <td mat-cell *matCellDef="let element" class="services-product__floor">
+                        <mat-icon *ngIf="!element.paid" class="ic_orders_table">close</mat-icon>
+                        <mat-icon *ngIf="element.paid" class="ic_orders_table">done</mat-icon>
+                    </td>
+                </ng-container>
+
+                <ng-container matColumnDef="shipped">
+                    <th mat-header-cell *matHeaderCellDef class="services-product__floor">Отгрузка</th>
+                    <td mat-cell *matCellDef="let element" class="services-product__floor">
+                        <mat-icon *ngIf="!element.shipped" class="ic_orders_table">close</mat-icon>
+                        <mat-icon *ngIf="element.shipped" class="ic_orders_table">done</mat-icon>
+                    </td>
+                </ng-container>
+
+                <ng-container matColumnDef="responsibleName">
+                    <th mat-header-cell *matHeaderCellDef class="services-product__price">Ответственный</th>
+                    <td mat-cell *matCellDef="let element" class="services-product__price">{{element.responsibleName}}</td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+            <mat-paginator #paginator
+                           (page)="getUpdate($event)"
+                           [pageSize]="10"
+                           [length] = "resultCount"
+                           [pageSizeOptions]="[10, 20, 50]">
+            </mat-paginator>
+        </div>
+    </div>
+</div>

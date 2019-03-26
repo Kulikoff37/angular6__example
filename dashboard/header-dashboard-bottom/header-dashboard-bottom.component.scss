@@ -1,0 +1,42 @@
+@import "../../_scss/vars";
+@import "../../_scss/typography";
+
+.header_info {
+    width: 100%;
+    height: 260px;
+    background-color: $colorYellow;
+}
+
+.header_info_inner {
+    width: 884px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+}
+
+.header_info_item {
+    &.active {
+        .header_info_item__value {
+            color: $colorWhite;
+        }
+        .header_info_item__hint {
+            color: $colorWhite;
+        }
+    }
+}
+
+.header_info_item__value {
+    font-size: 44px;
+    line-height: 1.27;
+    letter-spacing: -1.6px;
+    color: $colorYellowLighter;
+    font-weight: 500;
+}
+
+.header_info_item__hint {
+    font-size: 11px;
+    line-height: 1.45;
+    letter-spacing: .1px;
+    color: $colorYellowLighter;
+    font-weight: 500;
+}
